@@ -7,13 +7,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 #URL TO FIRST SONG IN PLAYLIST
-url = ""
+url = "https://www.youtube.com/watch?v=h--P8HzYZ74&list=PLLniz7eUcOG1vERNmYm8ApEXSiZfw_BGk&index=1"
 ymp = "https://ytmp3.cc/"
 switchDelay = 1
 waitoutDelay = 30
 songcount = 1
 #LOCATION OF CHROMEDRIVER
-driveLocation = ""
+driveLocation = "C:\\Users\\austi\\Desktop\\github\\chromedriver.exe"
 
 driver = webdriver.Chrome(driveLocation)
 driver.execute_script("window.open('http://google.com', 'new_window')")
@@ -40,8 +40,10 @@ while(1):
         EC.visibility_of_element_located((By.XPATH, '//*[@id="download"]/a[2]')))
     nextElement.click()
     driver.switch_to_window(driver.window_handles[0])
+    # nextVideo = WebDriverWait(driver, waitoutDelay).until(EC.visibility_of_element_located(
+    #     (By.XPATH, '//*[@data-index=' + '\"' + str(songcount) + '\"' + ']')))
     nextVideo = WebDriverWait(driver, waitoutDelay).until(EC.visibility_of_element_located(
-        (By.XPATH, '//*[@data-index=' + '\"' + str(songcount) + '\"' + ']')))
+        (By.XPATH, '//*[@id="items"]/ytd-playlist-panel-video-renderer[' + str(songcount) + ']')))
     nextVideo.click()
     songcount = songcount + 1
     time.sleep(switchDelay)
