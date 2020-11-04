@@ -1,10 +1,10 @@
-# ---------- youtube playlist to mp3 ----------
+# ---------- Youtube playlist to mp3 ----------
 
 
 Takes a youtube playlist and converts it into mp3 files  
 
 
-# ---------------- INSTRUCTIONS ----------------
+# --------------- Instructions ----------------
 
 
 Requirements: Python 2.7, and Selenium (http://selenium-python.readthedocs.io/installation.html)  
@@ -20,7 +20,7 @@ Edit 2 lines in the python script.
 Run the python script and wait for it to finish exectuting. It should take 2-3 seconds per song, plus the download time.  
  
  
-# -------------------- TIPS -------------------- 
+# -------------------- Tips -------------------- 
 
 
 Selenium is very fickle.   
