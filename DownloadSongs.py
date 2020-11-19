@@ -7,10 +7,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 #URL TO FIRST SONG IN PLAYLIST
-url = "https://www.youtube.com/watch?v=h--P8HzYZ74&list=PLLniz7eUcOG1vERNmYm8ApEXSiZfw_BGk&index=1"
+url = "https://www.youtube.com/watch?v=vlCwheTryPU&list=OLAK5uy_ni2Xd4MdhDbtdxFZzIVXg8VckJBsSJLW4&ab_channel=SaidtheSky-Topic"
 ymp = "https://ytmp3.cc/"
 switchDelay = 1
-waitoutDelay = 30
+waitoutDelay = 300
 songcount = 1
 #LOCATION OF CHROMEDRIVER
 driveLocation = "./chromedriver.exe"
@@ -48,7 +48,7 @@ while(1):
     #nextVideo = WebDriverWait(driver, waitoutDelay).until(EC.visibility_of_element_located(
     #    (By.XPATH, '//*[@id="items"]/ytd-playlist-panel-video-renderer[' + str(songcount) + ']')))
     nextVideo = WebDriverWait(driver, waitoutDelay).until(EC.visibility_of_element_located(
-        (By.XPATH, '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer[2' + str(songcount) + ']/a')))
+        (By.XPATH, '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer[' + str(songcount) + ']/a')))
     # //*[@id="playlist-items/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer[1]
     nextVideo.click()
     songcount = songcount + 1
