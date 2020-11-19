@@ -13,7 +13,7 @@ switchDelay = 1
 waitoutDelay = 30
 songcount = 1
 #LOCATION OF CHROMEDRIVER
-driveLocation = "C:\\Users\\austi\\Desktop\\github\\chromedriver.exe"
+driveLocation = "./chromedriver.exe"
 
 driver = webdriver.Chrome(driveLocation)
 driver.execute_script("window.open('http://google.com', 'new_window')")
@@ -21,29 +21,35 @@ driver.get(url)
 driver.switch_to_window(driver.window_handles[1])
 driver.get(ymp)
 driver.switch_to_window(driver.window_handles[0])
-
+print("starting main loop")
 while(1):
     holdurl = driver.current_url
+    print(holdurl)
     driver.switch_to_window(driver.window_handles[1])
     enterElement = WebDriverWait(driver, waitoutDelay).until(
         EC.visibility_of_element_located((By.ID, 'input')))
     enterElement.send_keys(holdurl)
     enterElement.send_keys(u'\ue006')
+    print("beforeDownload")
     downloadElement = WebDriverWait(driver, waitoutDelay).until(
-        EC.visibility_of_element_located((By.XPATH, '//*[@id="file"]')))
+        EC.visibility_of_element_located((By.XPATH, '//*[@id="buttons"]/a[1]')))
+    print("hit download")
     downloadElement.click()
     if len(driver.window_handles) > 2:
         driver.switch_to_window(driver.window_handles[2])
         driver.close()
         driver.switch_to_window(driver.window_handles[1])
     nextElement = WebDriverWait(driver, waitoutDelay).until(
-        EC.visibility_of_element_located((By.XPATH, '//*[@id="download"]/a[2]')))
+        EC.visibility_of_element_located((By.XPATH, '//*[@id="buttons"]/a[3]')))
     nextElement.click()
     driver.switch_to_window(driver.window_handles[0])
     # nextVideo = WebDriverWait(driver, waitoutDelay).until(EC.visibility_of_element_located(
     #     (By.XPATH, '//*[@data-index=' + '\"' + str(songcount) + '\"' + ']')))
+    #nextVideo = WebDriverWait(driver, waitoutDelay).until(EC.visibility_of_element_located(
+    #    (By.XPATH, '//*[@id="items"]/ytd-playlist-panel-video-renderer[' + str(songcount) + ']')))
     nextVideo = WebDriverWait(driver, waitoutDelay).until(EC.visibility_of_element_located(
-        (By.XPATH, '//*[@id="items"]/ytd-playlist-panel-video-renderer[' + str(songcount) + ']')))
+        (By.XPATH, '/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer[2' + str(songcount) + ']/a')))
+    # //*[@id="playlist-items/html/body/ytd-app/div/ytd-page-manager/ytd-watch-flexy/div[4]/div[2]/div/ytd-playlist-panel-renderer/div/div[2]/ytd-playlist-panel-video-renderer[1]
     nextVideo.click()
     songcount = songcount + 1
     time.sleep(switchDelay)
